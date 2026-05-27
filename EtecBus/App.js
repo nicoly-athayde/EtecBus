@@ -271,8 +271,8 @@ export default function App() {
         { locationGranted && nearestStop ? (
           <View style={styles.nearestBanner}>
             <Text style={styles.nearestLabel}>
-              📍Ponto mais próximo de você
-            </Text> 
+              📍 Ponto mais próximo de você
+            </Text>
             <Text style={styles.nearestName}>
               {nearestStop.name}
             </Text>
@@ -290,19 +290,20 @@ export default function App() {
 
         {selectedStop && (
           <View style={styles.selectedCard}>
-            <View style={styles.selectedCard}>
+            <View style={{ flex: 1 }}>
               <Text style={styles.selectedName}>
                 {selectedStop.name}
               </Text>
               <Text style={styles.selectedLines}>
-                Linhas: {selectedStop.lines.join(" . ")}
+                Linhas: {selectedStop.lines.join(" • ")}
               </Text>
             </View>
+            <TouchableOpacity style={styles.navBtn} onPress={openNavigation}>
+              <Text style={styles.navBtnText}>Navegar</Text>
+            </TouchableOpacity>
           </View>
         )}
-
       </View>
-
     </View>
   );
 }
@@ -310,8 +311,103 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F7FA',
+  },
+  loading: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  loadingText: {
+    marginTop: 12,
+    color: '#555',
+    fontSize: 15
+  },
+  header: {
+    paddingTop: 54,
+    paddingBottom: 12,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1A237E'
+  },
+  headerSub: {
+    fontSize: 13,
+    color: '#666',
+    marginTop: 2
+  },
+  map: {
+    flex: 1
+  },
+  fitButton: {
+    position: 'absolute',
+    top: 130,
+    right: 16,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  fiButtonText: {
+    fontSize: 13, color: '#1A237E', fontWeight: '600'
+  },
+  panel: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingBottom: 50,
+    paddingTop: 12,
+    borderTopLeftRadius: 20, borderTopRightRadius: 20,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: -3}
+  },
+  nearestBanner: {
+    backgroundColor: '#E3F2FD', borderRadius: 12, padding: 12, marginBottom: 10
+  },
+  nearestLabel: {
+    fontSize: 11, color: '#1565C0', fontWeight: '600', textTransform: 'uppercase'
+  },
+  nearestName: {
+    fontSize: 15, color: '#0D47A1',fontWeight: '700', marginTop: 2
+  },
+  nearestDist: {
+    fontSize: 13, color: '#42A5F5', marginTop: 2
+  },
+  noGpsBanner: {
+    backgroundColor: '#FFF8E1', borderRadius: 12, padding: 12, marginBottom: 10
+  },
+  noGpsText: {
+    fontSize: 13, color: '#F57F17'
+  },
+  selectedCard: {
+    flexDirection: 'row', alignItems: 'center',
+    backgroundColor: '#F8F9FF', borderRadius: 12,
+    padding: 12, borderWidth: 1, borderColor: '#C5CAE9'
+  },
+  selectedName: {
+    fontSize: 14, fontWeight: '700', color: '#1A237E', flexShrink: 1
+  },
+  selectedLines: {
+    fontSize: 12, color: '#5C6BC0', marginTop: 3
+  },
+  navBtn: {
+    backgroundColor: '#1E88E5', borderRadius: 10,
+    paddingHorizontal: 16, paddingVertical: 10, marginLeft: 10
+  },
+  navBtnText: {
+    fontSize: 13, fontWeight: '700', color: '#fff'
+  }
+
 });
